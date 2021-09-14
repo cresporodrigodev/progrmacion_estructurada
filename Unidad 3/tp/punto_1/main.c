@@ -1,30 +1,25 @@
+// Ingresar dos valores, indicar e imprimir si son iguales
+
 #include <stdio.h>
 
 int scan(char *message);
 
-int main() {
-    int x;
-    char messageA[] = "Ingrese el valor entero.\n";
-    char messageB[] = "El valor ingresado es:";
-    char messageC[] = "y es un numero";
-    char mPositive[] = "positivo";
-    char mNegative[] = "negativo";
-    char mZero[] = "cero";
+int main(){
+    int x, y;
+    char messageA[] = "Ingrese el primer valor.\n";
+    char messageB[] = "Ingrese el segundo valor.\n";
 
-    printf("Bienvenido\n");
     x = scan(messageA);
-
-    if (x > 0){
-        printf("%s %d %s %s.", messageB, x, messageC,mPositive);
-    }
-    else if (x < 0){
-        printf("%s %d %s %s.", messageB, x, messageC,mNegative);
+    y = scan(messageB);
+    if (x == y){
+        printf("%d y %d son iguales", x, y);
     }
     else{
-        printf("%s %d %s %s.", messageB, x, messageC,mZero);
+        printf("%d y %d no son iguales", x, y);
     }
-    return 0;  
+    return 0;
 }
+
 
 int scan(char *message){
     char err[] = "Debe ingresar un valor entero.\n";

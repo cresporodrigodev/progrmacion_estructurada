@@ -1,3 +1,7 @@
 *.xlsx
 *.json
 *.exe
+*.docs
+*.docx
+*.o
+*.exe
