@@ -4,7 +4,6 @@
 #include "../scan_int.h"
 #define MAX 25
 
-
 int main (){
     char messageA[] = "Ingrese un valor entero\n";
     int x, total, promedio;
