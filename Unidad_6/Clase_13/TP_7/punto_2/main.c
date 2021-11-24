@@ -4,6 +4,7 @@
 // por medio de un menú (debe ser búsqueda binaria o secuencial).
 
 #include <stdio.h>
+#include <math.h>
 #define TRUE 1
 #define FALSE 0
 #define EXIT 0
@@ -20,6 +21,7 @@ void printArray(float array[], int arrayLen);
 float scanFloat(char *message);
 
 int main(){
+    double x = pow(x, y);
     float array[10] = {0};
     int arrayLen = sizeof(array) / sizeof(array[0]);
 

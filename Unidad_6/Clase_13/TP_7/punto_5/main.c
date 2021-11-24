@@ -1,44 +1,77 @@
 #include <stdio.h>
 
-void fillSecuencialArray(int (*array), int arrayLen);
-void fillArray(int (*array), int arrayLen);
+#define TRUE 1
+#define FALSE 0
+
+void fillSecuencialArray(int (*array), int arrayLen, int from);
+void fillUserData(int (*array)[][], int totalOfEmployes, int emploId[], int proyectId[]);
 void intSort(int (*array), int arrayLen);
-void binarySearch(int array[], int arrayLen, int d);
+int binarySearch(int array[], int arrayLen, int d);
 
 int main(){
     char employName[10] = {"Camila", "Belen", "Rodrigo", "Pepe", "Juan", "Ramiro", "Lucila", "Luciana", "Enzo", "Carlos"};
     int employId[10] = {0};
-    int hourValue[10] = {500, 400, 450, 234, 578, 489, 980, 384, 467, 487};
+    int hourValue[11] = {0, 500, 400, 450, 234, 578, 489, 980, 384, 467, 487};
     int proyectId[15] = {0};
+    int inputData[10][3] = {0};
 
     int employIdLen = sizeof(employId) / sizeof(employId[0]);
     int hourValueLen = sizeof(hourValue) / sizeof(hourValue[0]);
     int proyectIdLen = sizeof(proyectId) / sizeof(proyectId[0]);
     
-    fillSecuencialArray(employId, employIdLen);
-    fillSecuencialArray(proyectId, proyectIdLen);
-    fillArray()
+    fillSecuencialArray(employId, employIdLen, 500);
+    fillSecuencialArray(proyectId, proyectIdLen, 400);
+    fillUserData(inputData, 10, employId, proyectId);
 
     return 0;
 }
 
-void fillSecuencialArray(int (*array), int arrayLen){
-    for (int i = 0; i < arrayLen; i++){
-        array[i] = i + 1;
+void fillSecuencialArray(int (*array), int arrayLen, int from){
+    for (int i = from; i < arrayLen; i++){
+        array[i] = i;
     }
     
 }
 
-void fillArray(int (*array), int arrayLen){
-    char messageRequest[] = "Ingrese el valor";
+void fillUserData(int (*inputData)[][], int totalOfEmployes, int employId[], int proyectId[]){
+    char employeRequest[] = "Ingrese el Id del empleado";
+    char proyectRequest[] = "Ingrese el Id del proyecto";
+    char workRequest[] = "Ingrese la cantidad de horas trabajadas";
+    int i = 0;
+    int isCorrectValue = FALSE;
 
-    printf("Ingrese %d numeros.\n", arrayLen);
+    int employIdLen = sizeof(employId) / sizeof(employId[0]);
+    int proyectIdLen = sizeof(proyectId) / sizeof(proyectId[0]);
+
+    printf("Ingrese los datos para cada empleado.\n");
     
-    for (int i = 0; i < arrayLen; i++){
-        printf("Numero %d. ", i + 1);
-        int input = scanFloat(messageRequest); 
-        array[i] = input;
+    for (int i = 0; i < count; i++){
+                isCorrectValue = FALSE;
+        do{
+            int employIdInput = scanInt(employeRequest);
+            if (binarySearch(employId, employIdLen, employIdInput) != -1){
+                isCorrectValue = TRUE;
+            }else{
+                printf("El id de empleado %d no existe.\n", employId);
+            }
+
+        } while (isCorrectValue == FALSE);
+
+        isCorrectValue = FALSE;
+        do{
+            int proyectIdInput = scanInt(proyectRequest);
+            if (binarySearch(proyectId, proyectIdLen, proyectIdInput) != -1){
+                isCorrectValue = TRUE;
+            }else{
+                printf("El id de proyecto %d no existe.\n", proyectId);
+            }
+
+        } while (isCorrectValue == FALSE);
+
+        int hoursWorkedInput = scanInt(workRequest);
+
     }
+    
 }
 
 void intSort(int (*array), int arrayLen){
@@ -59,7 +92,7 @@ void intSort(int (*array), int arrayLen){
 	}
 }
 
-void binarySearch(int array[], int arrayLen, int d){
+int binarySearch(int array[], int arrayLen, int d){
     int max, min, center, err;
 
     min = center = 0;
@@ -70,7 +103,6 @@ void binarySearch(int array[], int arrayLen, int d){
         center = ( (max - min) / 2 ) + min;
         
         if (array[center] == d){
-            printf("El valor %.2f se encuentra en la posicion %d del array.\n", d, center);
             err = FALSE;
             break;
         }
@@ -78,7 +110,10 @@ void binarySearch(int array[], int arrayLen, int d){
         if (d < array[center]) max = center - 1;
         else min = center + 1;
     }
-    if (err == TRUE) printf("No se encontro el valor %.2f dentro del array.\n", d);
+    
+    if (err == TRUE) return -1;
+
+    return center;
 }
 
 float scanFloat(char *message){

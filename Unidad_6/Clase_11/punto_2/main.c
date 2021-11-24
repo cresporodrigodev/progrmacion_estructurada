@@ -19,7 +19,7 @@ int main(){
 
     for (int i = localArraySize; i > 0; i--){
         int iAux = i - 1;
-        printf("- Posicion de array %d\t- Posicion de ingreso %d\t- valor %.2f\n", iAux, i, localArray[iAux]);
+        printf("- Posicion de array %3d\t- Posicion de ingreso %3d\t- valor %.2f\n", iAux, i, localArray[iAux]);
         fflush(stdout);
     }
 }
